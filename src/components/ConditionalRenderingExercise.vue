@@ -10,7 +10,7 @@
             screen.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="state.player-card" v-if="state.showPlayer">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -67,23 +67,23 @@
             to add another condition.
           </p>
           <!-- v-if comparing grade and 90 -->
-          <div>
+          <div v-if="state.grade > 89">
             <p>The grade is 'A'.</p>
           </div>
           <!-- v-else-if comparing grade and 80 -->
-          <div>
+          <div v-else-if="state.grade > 79">
             <p>The grade is 'B'.</p>
           </div>
           <!-- v-else-if comparing grade and 70 -->
-          <div>
+          <div v-else-if="state.grade > 69">
             <p>The grade is 'C'.</p>
           </div>
           <!-- v-else-if comparing grade and 60 -->
-          <div>
+          <div v-else-if="state.grade > 59">
             <p>The grade is 'D'.</p>
           </div>
           <!-- v-else to display if all the others fail -->
-          <div>
+          <div v-else-if="state.grade <= 59">
             <p>The grade is 'F'.</p>
           </div>
         </div>
@@ -130,12 +130,15 @@ export default {
     // NOTE typically state will be abstracted to a global AppState
     const state = reactive({
       //add a property to toggle the player-card here.
+      showPlayer: true,
       //add a property to set the number value here.
+      grade: 83,
       player: {
         photo: "https://robohash.org/Mick",
         name: "Mick",
         position: "WR",
         number: 4,
+        id: 6
       },
     });
     return {
